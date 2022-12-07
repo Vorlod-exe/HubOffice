@@ -1,0 +1,262 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:HubOffice"
+        xmlns:System="clr-namespace:System;assembly=mscorlib" x:Name="HubWin" x:Class="HubOffice.MainWindow"
+        mc:Ignorable="d"
+        Title="HubOffice" Height="295" ResizeMode="NoResize" Topmost="True" WindowStyle="None" WindowStartupLocation="CenterScreen" Width="361">
+    <Window.Resources>
+        <Color x:Key="Foregroung">#FFE7F6F2</Color>
+        <Color x:Key="Hight">#A5C9CA</Color>
+        <Color x:Key="BigHight">#395B64</Color>
+        <Color x:Key="Backgound">#FF2C3333</Color>
+        <System:Double x:Key="FontSize_Double">22</System:Double>
+        <System:Double x:Key="FontSize_Medium">17</System:Double>
+        <System:Double x:Key="FontSize_Simple">12</System:Double>
+        <BitmapImage x:Key="LOdoc" UriSource="/png/LOdoc.png"/>
+        <BitmapImage x:Key="LOppt" UriSource="/png/LOppt.png"/>
+        <BitmapImage x:Key="LOxls" UriSource="/png/LOxls.png"/>
+        <BitmapImage x:Key="MSdoc" UriSource="/png/MSdoc.png"/>
+        <BitmapImage x:Key="MSppt" UriSource="/png/MSppt.png"/>
+        <BitmapImage x:Key="MSxls" UriSource="/png/MSxls.png"/>
+    </Window.Resources>
+    <Window.Foreground>
+        <SolidColorBrush Color="{DynamicResource Foregroung}"/>
+    </Window.Foreground>
+    <Window.Background>
+        <SolidColorBrush Color="{DynamicResource Backgound}"/>
+    </Window.Background>
+    <Grid Width="361">
+        <Button x:Name="ExitButt" Content="X" HorizontalAlignment="Right" VerticalAlignment="Top" Width="26" Height="26" TouchLeave="Exit" BorderBrush="{x:Null}" Click="Exit" IsCancel="True">
+            <Button.Background>
+                <SolidColorBrush Color="{DynamicResource Backgound}"/>
+            </Button.Background>
+            <Button.Template>
+                <ControlTemplate TargetType="{x:Type ButtonBase}">
+                    <Border x:Name="border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="True">
+                        <ContentPresenter x:Name="contentPresenter" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" ContentStringFormat="{TemplateBinding ContentStringFormat}" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="Button.IsDefaulted" Value="True">
+                            <Setter Property="BorderBrush" TargetName="border" Value="#FFAC0A0A"/>
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" TargetName="border" Value="#FFAC0A0A"/>
+                            <Setter Property="BorderBrush" TargetName="border" Value="#FFAC0A0A"/>
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter Property="Background" TargetName="border" Value="#FFAC0A0A"/>
+                            <Setter Property="BorderBrush" TargetName="border" Value="#FFAC0A0A"/>
+                        </Trigger>
+                        <Trigger Property="ToggleButton.IsChecked" Value="True">
+                            <Setter Property="Background" TargetName="border" Value="#FFAC0A0A"/>
+                            <Setter Property="BorderBrush" TargetName="border" Value="#FFAC0A0A"/>
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="Background" TargetName="border" Value="#FFAC0A0A"/>
+                            <Setter Property="BorderBrush" TargetName="border" Value="#FFAC0A0A"/>
+                            <Setter Property="Foreground" Value="#FF838383"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Button.Template>
+            <Button.Foreground>
+                <SolidColorBrush Color="{DynamicResource Foregroung}"/>
+            </Button.Foreground>
+        </Button>
+        <Label Content="HubOffice" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="{DynamicResource FontSize_Double}" Margin="15,15,0,0" >
+            <Label.Foreground>
+                <SolidColorBrush Color="{DynamicResource Foregroung}"/>
+            </Label.Foreground>
+        </Label>
+        <Label Content="Vous souhaitez ouvrir le fichier :" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="{DynamicResource FontSize_Simple}" Margin="15,70,0,0" >
+            <Label.Foreground>
+                <SolidColorBrush Color="{DynamicResource Foregroung}"/>
+            </Label.Foreground>
+        </Label>
+        <Label x:Name="LabelTitle" Content="..." HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="{DynamicResource FontSize_Simple}" Margin="15,90,0,0" >
+            <Label.Foreground>
+                <SolidColorBrush Color="{DynamicResource Hight}"/>
+            </Label.Foreground>
+        </Label>
+        <Label x:Name="quLabel" Content="Quelle application souhaitez-vous utiliser ?" FontSize="{DynamicResource FontSize_Medium}" Margin="15,110,0,0" HorizontalAlignment="Left" Width="331" Height="33" VerticalAlignment="Top" >
+            <Label.Foreground>
+                <SolidColorBrush Color="{DynamicResource Foregroung}"/>
+            </Label.Foreground>
+        </Label>
+        <Button x:Name="imgMSdoc" HorizontalAlignment="Left" Margin="40,160,0,0" Width="100" Height="100" VerticalAlignment="Top" BorderBrush="{x:Null}" Foreground="{x:Null}" RenderTransformOrigin="0.5,0.5" Click="MSdocClick" Visibility="Hidden">
+            <Button.Template>
+                <ControlTemplate TargetType="{x:Type ButtonBase}">
+                    <Border x:Name="border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="True">
+                        <ContentPresenter x:Name="contentPresenter" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" ContentStringFormat="{TemplateBinding ContentStringFormat}" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="Button.IsDefaulted" Value="True">
+                            <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="LayoutTransform">
+                                <Setter.Value>
+                                    <ScaleTransform ScaleX="1.1" ScaleY="1.1"/>
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Button.Template>
+            <Button.FocusVisualStyle>
+                <Style/>
+            </Button.FocusVisualStyle>
+            <Button.Background>
+                <ImageBrush Stretch="Uniform" ImageSource="{DynamicResource MSdoc}"/>
+            </Button.Background>
+        </Button>
+        <Button x:Name="imgLOdoc" HorizontalAlignment="Right" Margin="0,160,40,0" Width="100" Height="100" VerticalAlignment="Top" BorderBrush="{x:Null}" Foreground="{x:Null}" RenderTransformOrigin="0.5,0.5" Click="LOdocClick" Visibility="Hidden">
+            <Button.Template>
+                <ControlTemplate TargetType="{x:Type ButtonBase}">
+                    <Border x:Name="border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="True">
+                        <ContentPresenter x:Name="contentPresenter" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" ContentStringFormat="{TemplateBinding ContentStringFormat}" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="Button.IsDefaulted" Value="True">
+                            <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="LayoutTransform">
+                                <Setter.Value>
+                                    <ScaleTransform ScaleX="1.1" ScaleY="1.1"/>
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Button.Template>
+            <Button.FocusVisualStyle>
+                <Style/>
+            </Button.FocusVisualStyle>
+            <Button.Background>
+                <ImageBrush Stretch="Uniform" ImageSource="{DynamicResource LOdoc}"/>
+            </Button.Background>
+        </Button>
+        <Button x:Name="imgMSxls" HorizontalAlignment="Left" Margin="40,160,0,0" Width="100" Height="100" VerticalAlignment="Top" BorderBrush="{x:Null}" Foreground="{x:Null}" RenderTransformOrigin="0.5,0.5" Click="MSxlsClick" Visibility="Hidden">
+            <Button.Template>
+                <ControlTemplate TargetType="{x:Type ButtonBase}">
+                    <Border x:Name="border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="True">
+                        <ContentPresenter x:Name="contentPresenter" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" ContentStringFormat="{TemplateBinding ContentStringFormat}" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="Button.IsDefaulted" Value="True">
+                            <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="LayoutTransform">
+                                <Setter.Value>
+                                    <ScaleTransform ScaleX="1.1" ScaleY="1.1"/>
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Button.Template>
+            <Button.FocusVisualStyle>
+                <Style/>
+            </Button.FocusVisualStyle>
+            <Button.Background>
+                <ImageBrush Stretch="Uniform" ImageSource="{DynamicResource MSxls}"/>
+            </Button.Background>
+        </Button>
+        <Button x:Name="imgLOxls" HorizontalAlignment="Right" Margin="0,160,40,0" Width="100" Height="100" VerticalAlignment="Top" BorderBrush="{x:Null}" Foreground="{x:Null}" RenderTransformOrigin="0.5,0.5" Click="LOxlsClick" Visibility="Hidden">
+            <Button.Template>
+                <ControlTemplate TargetType="{x:Type ButtonBase}">
+                    <Border x:Name="border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="True">
+                        <ContentPresenter x:Name="contentPresenter" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" ContentStringFormat="{TemplateBinding ContentStringFormat}" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="Button.IsDefaulted" Value="True">
+                            <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="LayoutTransform">
+                                <Setter.Value>
+                                    <ScaleTransform ScaleX="1.1" ScaleY="1.1"/>
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Button.Template>
+            <Button.FocusVisualStyle>
+                <Style/>
+            </Button.FocusVisualStyle>
+            <Button.Background>
+                <ImageBrush Stretch="Uniform" ImageSource="{DynamicResource LOxls}"/>
+            </Button.Background>
+        </Button>
+        <Button x:Name="imgMSppt" HorizontalAlignment="Left" Margin="40,160,0,0" Width="100" Height="100" VerticalAlignment="Top" BorderBrush="{x:Null}" Foreground="{x:Null}" RenderTransformOrigin="0.5,0.5" Click="MSpptClick" Visibility="Hidden">
+            <Button.Template>
+                <ControlTemplate TargetType="{x:Type ButtonBase}">
+                    <Border x:Name="border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="True">
+                        <ContentPresenter x:Name="contentPresenter" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" ContentStringFormat="{TemplateBinding ContentStringFormat}" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="Button.IsDefaulted" Value="True">
+                            <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="LayoutTransform">
+                                <Setter.Value>
+                                    <ScaleTransform ScaleX="1.1" ScaleY="1.1"/>
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Button.Template>
+            <Button.FocusVisualStyle>
+                <Style/>
+            </Button.FocusVisualStyle>
+            <Button.Background>
+                <ImageBrush Stretch="Uniform" ImageSource="{DynamicResource MSppt}"/>
+            </Button.Background>
+        </Button>
+        <Button x:Name="imgLOppt" HorizontalAlignment="Right" Margin="0,160,40,0" Width="100" Height="100" VerticalAlignment="Top" BorderBrush="{x:Null}" Foreground="{x:Null}" RenderTransformOrigin="0.5,0.5" Click="LOpptClick" Visibility="Hidden">
+            <Button.Template>
+                <ControlTemplate TargetType="{x:Type ButtonBase}">
+                    <Border x:Name="border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="True">
+                        <ContentPresenter x:Name="contentPresenter" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" ContentStringFormat="{TemplateBinding ContentStringFormat}" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="Button.IsDefaulted" Value="True">
+                            <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="LayoutTransform">
+                                <Setter.Value>
+                                    <ScaleTransform ScaleX="1.1" ScaleY="1.1"/>
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Button.Template>
+            <Button.FocusVisualStyle>
+                <Style/>
+            </Button.FocusVisualStyle>
+            <Button.Background>
+                <ImageBrush Stretch="Uniform" ImageSource="{DynamicResource LOppt}"/>
+            </Button.Background>
+        </Button>
+        <Label Content="MicrosoftOffice" HorizontalAlignment="Left" FontSize="{DynamicResource FontSize_Simple}" Margin="45,254,0,0" Height="26" VerticalAlignment="Top" >
+            <Label.Foreground>
+                <SolidColorBrush Color="{DynamicResource BigHight}"/>
+            </Label.Foreground>
+        </Label>
+        <Label Content="LibreOffice" HorizontalAlignment="Right" FontSize="{DynamicResource FontSize_Simple}" Margin="0,254,56,0" Height="26" VerticalAlignment="Top" >
+            <Label.Foreground>
+                <SolidColorBrush Color="{DynamicResource BigHight}"/>
+            </Label.Foreground>
+        </Label>
+    </Grid>
+</Window>
